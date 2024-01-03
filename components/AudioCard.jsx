@@ -4,16 +4,16 @@ import React from "react";
 export default function AudioCard({ image, title }) {
   const width = Dimensions.get("screen").width;
   return (
-    <View className="bg-[#EFECF8] rounded-xl" style={{ width: width / 2 }}>
+    <View className="bg-[#EFECF8] rounded-xl" style={{ width: width / 2.1 }}>
       <ImageBackground
         imageStyle={{ borderRadius: 10 }}
-        style={{ width: width / 2 }}
+        style={{ width: width / 2.1 }}
         className="w-[200px] h-[200px] items-center justify-center"
         source={{ uri: image }}
       >
         <Text
           style={{
-            textShadowColor: "grey",
+            textShadowColor: "black",
             textShadowOffset: { width: -1, height: 1 },
             textShadowRadius: 5,
           }}
@@ -22,7 +22,7 @@ export default function AudioCard({ image, title }) {
           {title}
         </Text>
       </ImageBackground>
-      <Text className="my-3 text-center text-xl font-bold">{title}</Text>
+      <Text className="my-3 text-center text-lg font-bold">{title}</Text>
     </View>
   );
 }

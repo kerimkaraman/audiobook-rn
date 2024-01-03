@@ -1,10 +1,18 @@
-import { View, Text, SafeAreaView, Image, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  Pressable,
+  ScrollView,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Ionicons } from "@expo/vector-icons";
 import { collection, getDocs } from "firebase/firestore";
 import { FIRESTORE } from "../firebaseConfig";
 import AudioCard from "../components/AudioCard";
+import TrackPlayer from "../components/TrackPlayer";
 
 export default function Homepage() {
   const { username } = useSelector((state) => state.user);
@@ -25,7 +33,7 @@ export default function Homepage() {
   };
 
   useEffect(() => {
-    getAudioBooks().then(console.log(data));
+    getAudioBooks();
   }, []);
 
   return isLoading ? (
@@ -34,7 +42,7 @@ export default function Homepage() {
     </View>
   ) : (
     <View className="bg-white flex-1">
-      <SafeAreaView>
+      <SafeAreaView className="flex-1">
         <View className="p-4 flex-row items-end space-x-6">
           <Image
             className="w-[70px] h-[70px] rounded-full"
@@ -50,17 +58,28 @@ export default function Homepage() {
           <Text className="text-[#585859]">Search title, topics or author</Text>
           <Ionicons name="search" size={16} color="#585859" />
         </Pressable>
-        <View>
+        <ScrollView
+          contentContainerStyle={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: 5,
+          }}
+          style={{ flex: 1 }}
+        >
           {data.map((audio) => {
             return (
               <AudioCard
                 key={audio.id}
                 id={audio.id}
                 image={audio.image}
-                title={audio.name}
+                title={audio.title}
               />
             );
           })}
+        </ScrollView>
+        <View>
+          <TrackPlayer />
         </View>
       </SafeAreaView>
     </View>

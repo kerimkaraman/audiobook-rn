@@ -56,7 +56,7 @@ export default function CategorySelectScreen({ navigation }) {
             <CategorySelectItem text="History" value="history" />
             <CategorySelectItem text="Science" value="science" />
             <CategorySelectItem text="Health" value="health" />
-            <CategorySelectItem text="Business" value="business" />
+            <CategorySelectItem text="Horror" value="horrorf" />
             <CategorySelectItem text="Art" value="art" />
             <CategorySelectItem text="Sport" value="sport" />
             <CategorySelectItem text="Young Adult" value="youngadult" />

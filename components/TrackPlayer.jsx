@@ -8,7 +8,7 @@ export default function TrackPlayer() {
   async function playSound() {
     console.log("Loading Sound");
     const { sound } = await Audio.Sound.createAsync({
-      uri: "https://firebasestorage.googleapis.com/v0/b/audiobook-8840c.appspot.com/o/audiobooks%2Fy2mate.com%20-%20TARKAN%20%20Kara%20Toprak.mp3?alt=media&token=1431e295-ddff-4ea0-a96a-1e7b2f77ee45",
+      uri: "https://firebasestorage.googleapis.com/v0/b/audiobook-8840c.appspot.com/o/audiobooks%2Fy2mate.com%20-%20The%20Little%20Mermaid%20by%20Hans%20Christian%20Andersen%20%20Full%20Audiobook%20%20Relaxing%20Bedtime%20Stories%20.mp3?alt=media&token=f4322f1d-5d16-4f5f-882d-49df2fbc4e6b",
     });
     setSound(sound);
     console.log("Playing Sound");
@@ -16,6 +16,7 @@ export default function TrackPlayer() {
   }
   async function pauseSound() {
     await sound.pauseAsync();
+    console.log("Pausing Sound");
   }
 
   useEffect(() => {
