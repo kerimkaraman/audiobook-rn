@@ -1,19 +1,14 @@
 import { useEffect, useState } from "react";
-import {
-  View,
-  StyleSheet,
-  Button,
-  SafeAreaView,
-  Image,
-  Pressable,
-} from "react-native";
+import { View, Text, SafeAreaView, Image, Pressable } from "react-native";
 import { Audio } from "expo-av";
 import { Foundation, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import Slider from "@react-native-community/slider";
 
 export default function TrackPlayer({ route }) {
   const [sound, setSound] = useState();
-
+  const [audioLength, setAudioLength] = useState();
+  const [currentAudioLength, setCurrentAudioLength] = useState(0);
   const [stat, setStat] = useState("loading");
   const nav = useNavigation();
   const { source, image, title, author } = route.params;
@@ -25,6 +20,7 @@ export default function TrackPlayer({ route }) {
         uri: source,
       });
       setSound(sound);
+      setAudioLength(status.durationMillis);
       console.log("Playing Sound");
       setStat("playing");
       await sound.playAsync();
@@ -51,19 +47,44 @@ export default function TrackPlayer({ route }) {
   return (
     <View className="flex-1 bg-white">
       <SafeAreaView>
-        <View className="px-6 py-2">
+        <View className="px-6 pt-4">
           <Pressable onPress={() => nav.goBack()}>
             <Ionicons name="arrow-back" size={36} color="black" />
           </Pressable>
         </View>
-        <View>
+        <View className="h-[300px]">
           <Image
-            className="w-[90%] h-[70%] mx-auto"
+            className="w-[100%] h-[100%] mx-auto"
             style={{ objectFit: "contain" }}
             source={{ uri: image }}
           />
         </View>
+        <View className="items-center justify-center mt-6 space-y-4">
+          <Text className="text-xl font-bold">{title}</Text>
+          <Text className="text-lg font-light">{author}</Text>
+        </View>
         <View>
+          <Slider
+            minimumValue={0}
+            maximumValue={audioLength}
+            value={currentAudioLength}
+            onSlidingComplete={(val) => {
+              setCurrentAudioLength(val);
+              sound.setPositionAsync(val);
+            }}
+            step={1}
+            onValueChange={() => {
+              console.log(
+                "audio length:",
+                audioLength,
+                "current audio length:",
+                currentAudioLength
+              );
+              console.log();
+            }}
+          />
+        </View>
+        <View className="mt-2">
           <Pressable className="mx-auto" onPress={playSound}>
             <Foundation
               name={stat === "playing" ? "pause" : "play"}
