@@ -4,6 +4,7 @@ import { Audio } from "expo-av";
 import { Foundation, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Slider from "@react-native-community/slider";
+import { convertMillisecondsToTime } from "../millisecondsConverter";
 
 export default function TrackPlayer({ route }) {
   const [sound, setSound] = useState();
@@ -44,6 +45,12 @@ export default function TrackPlayer({ route }) {
       : undefined;
   }, [sound]);
 
+  setInterval(() => {
+    if (stat === "playing") {
+      setCurrentAudioLength(currentAudioLength + 1000);
+    }
+  }, 1000);
+
   return (
     <View className="flex-1 bg-white">
       <SafeAreaView>
@@ -80,9 +87,12 @@ export default function TrackPlayer({ route }) {
                 "current audio length:",
                 currentAudioLength
               );
-              console.log();
             }}
           />
+        </View>
+        <View>
+          <Text>{convertMillisecondsToTime(currentAudioLength)}</Text>
+          <Text>{convertMillisecondsToTime(audioLength)}</Text>
         </View>
         <View className="mt-2">
           <Pressable className="mx-auto" onPress={playSound}>
