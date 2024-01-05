@@ -13,6 +13,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { FIRESTORE } from "../firebaseConfig";
 import AudioCard from "../components/AudioCard";
 import TrackPlayer from "../components/TrackPlayer";
+import LoadingScreen from "./LoadingScreen";
 
 export default function Homepage() {
   const { username } = useSelector((state) => state.user);
@@ -37,13 +38,11 @@ export default function Homepage() {
   }, []);
 
   return isLoading ? (
-    <View className="flex-1 justify-center items-center bg-white">
-      <Text>Loading</Text>
-    </View>
+    <LoadingScreen />
   ) : (
     <View className="bg-white flex-1">
       <SafeAreaView className="flex-1">
-        <View className="p-4 flex-row items-end space-x-6">
+        <View className="px-4 flex-row items-end space-x-6">
           <Image
             className="w-[70px] h-[70px] rounded-full"
             style={{ objectFit: "cover" }}
@@ -54,7 +53,7 @@ export default function Homepage() {
             <Text className="text-lg font-bold">{username}</Text>
           </View>
         </View>
-        <Pressable className="bg-[#EFECF8] py-3 px-3 w-[90%] mx-auto rounded-lg mt-4 flex-row justify-between">
+        <Pressable className="bg-[#EFECF8] py-3 my-4 px-3 w-[90%] mx-auto rounded-lg mt-4 flex-row justify-between">
           <Text className="text-[#585859]">Search title, topics or author</Text>
           <Ionicons name="search" size={16} color="#585859" />
         </Pressable>
@@ -63,7 +62,7 @@ export default function Homepage() {
             flexDirection: "row",
             flexWrap: "wrap",
             justifyContent: "center",
-            gap: 5,
+            gap: 20,
           }}
           style={{ flex: 1 }}
         >
@@ -78,14 +77,7 @@ export default function Homepage() {
             );
           })}
         </ScrollView>
-        <View>
-          <TrackPlayer />
-        </View>
       </SafeAreaView>
     </View>
   );
 }
-
-/*     querySnapshot.forEach((doc) => {
-      setData((previous) => [...previous, doc.data()]);
-    }); */

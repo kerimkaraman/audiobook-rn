@@ -7,6 +7,8 @@ import SignIn from "./screens/SignIn";
 import SignUp from "./screens/SignUp";
 import CategorySelectScreen from "./screens/CategorySelectScreen";
 import Homepage from "./screens/Homepage";
+import AudioBookDetailScreen from "./screens/AudioBookDetailScreen";
+import TrackPlayer from "./components/TrackPlayer";
 
 export default function AppNavigation() {
   const Stack = createNativeStackNavigator();
@@ -24,6 +26,11 @@ export default function AppNavigation() {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="CategorySelect" component={CategorySelectScreen} />
         <Stack.Screen name="Homepage" component={Homepage} />
+        <Stack.Screen
+          name="AudioBookDetailScreen"
+          component={AudioBookDetailScreen}
+        />
+        <Stack.Screen name="TrackPlayer" component={TrackPlayer} />
       </Stack.Navigator>
     </NavigationContainer>
   );

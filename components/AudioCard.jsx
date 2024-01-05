@@ -1,14 +1,25 @@
-import { View, Text, ImageBackground, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  ImageBackground,
+  Dimensions,
+  Pressable,
+} from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
-export default function AudioCard({ image, title }) {
+export default function AudioCard({ image, title, id }) {
   const width = Dimensions.get("screen").width;
+  const nav = useNavigation();
+
   return (
-    <View className="bg-[#EFECF8] rounded-xl" style={{ width: width / 2.1 }}>
+    <Pressable
+      onPress={() => nav.navigate("AudioBookDetailScreen", { id: id })}
+      className="bg-[#EFECF8] rounded-xl w-[45%]"
+    >
       <ImageBackground
         imageStyle={{ borderRadius: 10 }}
-        style={{ width: width / 2.1 }}
-        className="w-[200px] h-[200px] items-center justify-center"
+        className="w-[100%] h-[200px] items-center justify-center"
         source={{ uri: image }}
       >
         <Text
@@ -23,6 +34,6 @@ export default function AudioCard({ image, title }) {
         </Text>
       </ImageBackground>
       <Text className="my-3 text-center text-lg font-bold">{title}</Text>
-    </View>
+    </Pressable>
   );
 }
