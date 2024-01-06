@@ -15,7 +15,7 @@ import AudioCard from "../components/AudioCard";
 import TrackPlayer from "../components/TrackPlayer";
 import LoadingScreen from "./LoadingScreen";
 
-export default function Homepage() {
+export default function Homepage({ navigation }) {
   const { username } = useSelector((state) => state.user);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -53,29 +53,32 @@ export default function Homepage() {
             <Text className="text-lg font-bold">{username}</Text>
           </View>
         </View>
-        <Pressable className="bg-[#EFECF8] py-3 my-4 px-3 w-[90%] mx-auto rounded-lg mt-4 flex-row justify-between">
-          <Text className="text-[#585859]">Search title, topics or author</Text>
+        <Pressable
+          onPress={() => navigation.navigate("SearchScreen")}
+          className="bg-[#EFECF8] py-3 my-4 px-3 w-[90%] mx-auto rounded-lg mt-4 flex-row justify-between"
+        >
+          <Text className="text-[#585859]">Search for audibooks</Text>
           <Ionicons name="search" size={16} color="#585859" />
         </Pressable>
-        <ScrollView
-          contentContainerStyle={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: 20,
-          }}
-          style={{ flex: 1 }}
-        >
-          {data.map((audio) => {
-            return (
-              <AudioCard
-                key={audio.id}
-                id={audio.id}
-                image={audio.image}
-                title={audio.title}
-              />
-            );
-          })}
+        <ScrollView style={{ flex: 1 }}>
+          <View>
+            <Text></Text>
+          </View>
+          <View
+            style={{ gap: 20 }}
+            className="flex-row flex-wrap justify-center"
+          >
+            {data.map((audio) => {
+              return (
+                <AudioCard
+                  key={audio.id}
+                  id={audio.id}
+                  image={audio.image}
+                  title={audio.title}
+                />
+              );
+            })}
+          </View>
         </ScrollView>
       </SafeAreaView>
     </View>

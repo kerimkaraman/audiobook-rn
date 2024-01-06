@@ -8,6 +8,7 @@ import CategorySelectScreen from "./screens/CategorySelectScreen";
 import Homepage from "./screens/Homepage";
 import AudioBookDetailScreen from "./screens/AudioBookDetailScreen";
 import TrackPlayer from "./components/TrackPlayer";
+import SearchScreen from "./screens/SearchScreen";
 
 export default function AppNavigation() {
   const Stack = createNativeStackNavigator();
@@ -30,6 +31,7 @@ export default function AppNavigation() {
           component={AudioBookDetailScreen}
         />
         <Stack.Screen name="TrackPlayer" component={TrackPlayer} />
+        <Stack.Screen name="SearchScreen" component={SearchScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

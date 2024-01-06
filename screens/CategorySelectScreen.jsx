@@ -42,7 +42,7 @@ export default function CategorySelectScreen({ navigation }) {
       <SafeAreaView>
         <View className="w-[80%] mx-auto mt-12 flex-col">
           <Pressable onPress={() => navigation.goBack()} className="mb-6">
-            <Ionicons name="arrow-back" size={36} color="black" />
+            <Ionicons name="arrow-back-outline" size={36} color="black" />
           </Pressable>
           <View>
             <Text className="text-3xl font-semibold">

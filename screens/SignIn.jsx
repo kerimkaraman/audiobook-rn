@@ -46,13 +46,13 @@ export default function SignIn({ navigation }) {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
       });
   };
 
   return (
     <View style={{ flex: 1 }}>
       <KeyboardAvoidingView
-        keyboardVerticalOffset={300}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <ImageBackground
@@ -69,7 +69,7 @@ export default function SignIn({ navigation }) {
           <View className="bg-[#6C62FE] h-[40%] w-full z-[1]"></View>
           <View className="bg-[#EEEDF8] h-[60%] z-[3] w-full p-4 pt-6 rounded-tl-2xl">
             <Text className="text-4xl font-bold">Sign In</Text>
-            <View className="gap-y-6 mt-12">
+            <View className="gap-y-6 mt-8">
               <View className="gap-y-2">
                 <Text className="font-semibold">Email Adress</Text>
                 <TextInput
@@ -86,7 +86,7 @@ export default function SignIn({ navigation }) {
                     onChangeText={(text) => {
                       dispatch(setPassword(text));
                     }}
-                    className="block py-4"
+                    className="block py-4 w-[90%]"
                   />
                   <Pressable onPress={() => setShowPassword(!showPassword)}>
                     <Entypo

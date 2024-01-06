@@ -29,7 +29,7 @@ export default function SignUp({ navigation }) {
   return (
     <View style={{ flex: 1 }}>
       <KeyboardAvoidingView
-        keyboardVerticalOffset={300}
+        keyboardVerticalOffset={200}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <ImageBackground

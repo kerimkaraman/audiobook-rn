@@ -37,7 +37,7 @@ export default function AudioBookDetailScreen({ route, navigation }) {
   return isLoading ? (
     <LoadingScreen />
   ) : (
-    <View className="flex-1 py-16">
+    <View className="flex-1 py-16 bg-white">
       <ScrollView style={{ flex: 1 }}>
         <View className="px-4">
           <Pressable onPress={() => navigation.goBack()} className="">
