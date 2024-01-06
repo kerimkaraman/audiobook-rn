@@ -13,12 +13,19 @@ import SearchScreen from "./screens/SearchScreen";
 export default function AppNavigation() {
   const Stack = createNativeStackNavigator();
 
+  const forFade = ({ current }) => ({
+    cardStyle: {
+      opacity: current.progress,
+    },
+  });
+
   return (
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="OpeningScreen"
         screenOptions={{
           headerShown: false,
+          cardStyleInterpolator: forFade,
         }}
       >
         <Stack.Screen name="OpeningScreen" component={OpeningScreen} />

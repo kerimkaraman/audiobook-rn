@@ -38,7 +38,12 @@ export default function CategorySelectScreen({ navigation }) {
   };
 
   return (
-    <View className="bg-[#EEECF9] flex-1">
+    <View
+      style={{
+        marginTop: Platform.OS == "android" ? "25" : "0",
+      }}
+      className="bg-[#EEECF9] flex-1"
+    >
       <SafeAreaView>
         <View className="w-[80%] mx-auto mt-12 flex-col">
           <Pressable onPress={() => navigation.goBack()} className="mb-6">

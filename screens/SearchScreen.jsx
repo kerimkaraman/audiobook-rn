@@ -13,10 +13,13 @@ import { Ionicons } from "@expo/vector-icons";
 import { FIRESTORE } from "../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import LoadingScreen from "./LoadingScreen";
+import AudioCard from "../components/AudioCard";
 
 export default function SearchScreen({ navigation }) {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [filteredText, setFilteredText] = useState("");
+  const [filteredAudioBooks, setFilteredAudioBooks] = useState([]);
 
   const getAudioBooks = async () => {
     const db = FIRESTORE;
@@ -38,7 +41,12 @@ export default function SearchScreen({ navigation }) {
   return isLoading ? (
     <LoadingScreen />
   ) : (
-    <View className="pt-16">
+    <View
+      style={{
+        paddingTop: Platform.OS == "android" ? 25 : 0,
+      }}
+      className="pt-16"
+    >
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
@@ -48,13 +56,36 @@ export default function SearchScreen({ navigation }) {
           </Pressable>
           <View className="bg-[#EFECF8] py-3 my-4 px-3 w-[90%] mx-auto rounded-lg mt-4 flex-row justify-between">
             <TextInput
+              onChangeText={(val) => {
+                setFilteredAudioBooks(
+                  data.filter((audio) => audio.title.includes(val))
+                );
+              }}
               placeholder="Search for audibooks"
               placeholderTextColor="#585859"
             />
             <Ionicons name="search" size={16} color="#585859" />
           </View>
         </View>
-        <ScrollView></ScrollView>
+        <ScrollView
+          contentContainerStyle={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: 20,
+          }}
+        >
+          {filteredAudioBooks.map((audibook) => {
+            return (
+              <AudioCard
+                key={audibook.id}
+                id={audibook.id}
+                image={audibook.image}
+                title={audibook.title}
+              />
+            );
+          })}
+        </ScrollView>
       </KeyboardAvoidingView>
     </View>
   );

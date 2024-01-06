@@ -1,7 +1,6 @@
 import {
   View,
   Text,
-  SafeAreaView,
   Pressable,
   Image,
   Dimensions,
@@ -37,7 +36,12 @@ export default function AudioBookDetailScreen({ route, navigation }) {
   return isLoading ? (
     <LoadingScreen />
   ) : (
-    <View className="flex-1 py-16 bg-white">
+    <View
+      style={{
+        paddingTop: Platform.OS == "android" ? 50 : 0,
+      }}
+      className="flex-1 py-16 bg-white"
+    >
       <ScrollView style={{ flex: 1 }}>
         <View className="px-4">
           <Pressable onPress={() => navigation.goBack()} className="">

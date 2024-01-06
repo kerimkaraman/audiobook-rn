@@ -31,7 +31,10 @@ export default function TrackPlayer({ route }) {
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (stat === "playing") {
-        if (currentAudioLength === audioLength) {
+        if (
+          currentAudioLength == audioLength ||
+          currentAudioLength > audioLength
+        ) {
           setCurrentAudioLength(0);
           setStat("loading");
           clearInterval(intervalId);
@@ -77,7 +80,12 @@ export default function TrackPlayer({ route }) {
   }, [sound]);
 
   return (
-    <View className="flex-1 bg-white">
+    <View
+      style={{
+        paddingTop: Platform.OS == "android" ? 50 : 0,
+      }}
+      className="flex-1 bg-white"
+    >
       <SafeAreaView>
         <View className="px-6 pt-4">
           <Pressable onPress={() => nav.goBack()}>

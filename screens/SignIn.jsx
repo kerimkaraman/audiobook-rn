@@ -51,7 +51,12 @@ export default function SignIn({ navigation }) {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View
+      style={{
+        marginTop: Platform.OS == "android" ? "25" : "0",
+        flex: 1,
+      }}
+    >
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >

@@ -15,7 +15,7 @@ export default function AudioCard({ image, title, id }) {
   return (
     <Pressable
       onPress={() => nav.navigate("AudioBookDetailScreen", { id: id })}
-      className="bg-[#EFECF8] rounded-xl w-[45%]"
+      className="bg-[#EFECF8] rounded-xl w-[45%] mx-auto"
     >
       <ImageBackground
         imageStyle={{ borderRadius: 10 }}

@@ -5,6 +5,7 @@ import {
   Image,
   Pressable,
   ScrollView,
+  Platform,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -12,7 +13,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { collection, getDocs } from "firebase/firestore";
 import { FIRESTORE } from "../firebaseConfig";
 import AudioCard from "../components/AudioCard";
-import TrackPlayer from "../components/TrackPlayer";
 import LoadingScreen from "./LoadingScreen";
 
 export default function Homepage({ navigation }) {
@@ -40,7 +40,12 @@ export default function Homepage({ navigation }) {
   return isLoading ? (
     <LoadingScreen />
   ) : (
-    <View className="bg-white flex-1">
+    <View
+      style={{
+        paddingTop: Platform.OS == "android" ? 25 : 0,
+      }}
+      className="bg-white flex-1"
+    >
       <SafeAreaView className="flex-1">
         <View className="px-4 flex-row items-end space-x-6">
           <Image
@@ -61,12 +66,12 @@ export default function Homepage({ navigation }) {
           <Ionicons name="search" size={16} color="#585859" />
         </Pressable>
         <ScrollView style={{ flex: 1 }}>
-          <View>
-            <Text></Text>
+          <View className="my-4 px-2">
+            <Text className="text-xl font-bold">Audiobooks</Text>
           </View>
           <View
             style={{ gap: 20 }}
-            className="flex-row flex-wrap justify-center"
+            className="flex-row flex-wrap px-6 justify-start"
           >
             {data.map((audio) => {
               return (
