@@ -53,12 +53,13 @@ export default function SignIn({ navigation }) {
   return (
     <View
       style={{
-        marginTop: Platform.OS == "android" ? "25" : "0",
         flex: 1,
       }}
     >
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={200}
+        className="flex-1"
       >
         <ImageBackground
           className="w-full h-full"
@@ -74,35 +75,37 @@ export default function SignIn({ navigation }) {
           <View className="bg-[#6C62FE] h-[40%] w-full z-[1]"></View>
           <View className="bg-[#EEEDF8] h-[60%] z-[3] w-full p-4 pt-6 rounded-tl-2xl">
             <Text className="text-4xl font-bold">Sign In</Text>
-            <View className="gap-y-6 mt-8">
-              <View className="gap-y-2">
-                <Text className="font-semibold">Email Adress</Text>
-                <TextInput
-                  autoCapitalize="none"
-                  onChangeText={(text) => dispatch(setEmail(text))}
-                  className="bg-[#CEC7F0] py-4 rounded-lg px-2"
-                />
-              </View>
-              <View className="gap-y-2">
-                <Text className="font-semibold">Password</Text>
-                <View className="bg-[#CEC7F0] rounded-lg flex-row justify-between items-center px-4">
+            <View className="mt-6">
+              <View className="gap-y-4">
+                <View className="gap-y-2">
+                  <Text className="font-semibold">Email Adress</Text>
                   <TextInput
-                    secureTextEntry={showPassword ? false : true}
-                    onChangeText={(text) => {
-                      dispatch(setPassword(text));
-                    }}
-                    className="block py-4 w-[90%]"
+                    autoCapitalize="none"
+                    onChangeText={(text) => dispatch(setEmail(text))}
+                    className="bg-[#CEC7F0] py-4 rounded-lg px-2"
                   />
-                  <Pressable onPress={() => setShowPassword(!showPassword)}>
-                    <Entypo
-                      name={showPassword ? "eye-with-line" : "eye"}
-                      size={24}
-                      color="black"
+                </View>
+                <View className="gap-y-2">
+                  <Text className="font-semibold">Password</Text>
+                  <View className="bg-[#CEC7F0] rounded-lg flex-row justify-between items-center px-4">
+                    <TextInput
+                      secureTextEntry={showPassword ? false : true}
+                      onChangeText={(text) => {
+                        dispatch(setPassword(text));
+                      }}
+                      className="block py-4 w-[90%]"
                     />
-                  </Pressable>
+                    <Pressable onPress={() => setShowPassword(!showPassword)}>
+                      <Entypo
+                        name={showPassword ? "eye-with-line" : "eye"}
+                        size={24}
+                        color="black"
+                      />
+                    </Pressable>
+                  </View>
                 </View>
               </View>
-              <View>
+              <View className="mt-16">
                 <Pressable
                   onPress={handleContinue}
                   className="bg-[#6C62FE] py-3 rounded-xl"

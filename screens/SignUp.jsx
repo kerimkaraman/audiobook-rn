@@ -46,47 +46,49 @@ export default function SignUp({ navigation }) {
           <View className="bg-[#6C62FE] h-[30%] w-full z-[1]"></View>
           <View className="bg-[#EEEDF8] h-[70%] z-[3] w-full p-4 pt-6 rounded-tl-2xl">
             <Text className="text-4xl font-bold">Sign up</Text>
-            <View className="gap-y-6 mt-6">
-              <View className="gap-y-2">
-                <Text className="font-semibold">Username</Text>
-                <TextInput
-                  autoCapitalize="none"
-                  onChangeText={(text) => {
-                    dispatch(setUsername(text));
-                  }}
-                  className="bg-[#CEC7F0] py-4 rounded-lg px-2"
-                />
-              </View>
-              <View className="gap-y-2">
-                <Text className="font-semibold">Email Adress</Text>
-                <TextInput
-                  autoCapitalize="none"
-                  onChangeText={(text) => {
-                    dispatch(setEmail(text));
-                  }}
-                  className="bg-[#CEC7F0] py-4 rounded-lg px-2"
-                />
-              </View>
-              <View className="gap-y-2">
-                <Text className="font-semibold">Password</Text>
-                <View className="bg-[#CEC7F0] rounded-lg flex-row justify-between items-center px-4">
+            <View className="flex-1 mt-6">
+              <View className="gap-y-4">
+                <View className="gap-y-2">
+                  <Text className="font-semibold">Username</Text>
                   <TextInput
-                    secureTextEntry={showPassword ? false : true}
+                    autoCapitalize="none"
                     onChangeText={(text) => {
-                      dispatch(setPassword(text));
+                      dispatch(setUsername(text));
                     }}
-                    className="block py-4"
+                    className="bg-[#CEC7F0] py-4 rounded-lg px-2"
                   />
-                  <Pressable onPress={() => setShowPassword(!showPassword)}>
-                    <Entypo
-                      name={showPassword ? "eye-with-line" : "eye"}
-                      size={24}
-                      color="black"
+                </View>
+                <View className="gap-y-2">
+                  <Text className="font-semibold">Email Adress</Text>
+                  <TextInput
+                    autoCapitalize="none"
+                    onChangeText={(text) => {
+                      dispatch(setEmail(text));
+                    }}
+                    className="bg-[#CEC7F0] py-4 rounded-lg px-2"
+                  />
+                </View>
+                <View className="gap-y-2">
+                  <Text className="font-semibold">Password</Text>
+                  <View className="bg-[#CEC7F0] rounded-lg flex-row justify-between items-center px-4">
+                    <TextInput
+                      secureTextEntry={showPassword ? false : true}
+                      onChangeText={(text) => {
+                        dispatch(setPassword(text));
+                      }}
+                      className="block py-4"
                     />
-                  </Pressable>
+                    <Pressable onPress={() => setShowPassword(!showPassword)}>
+                      <Entypo
+                        name={showPassword ? "eye-with-line" : "eye"}
+                        size={24}
+                        color="black"
+                      />
+                    </Pressable>
+                  </View>
                 </View>
               </View>
-              <View>
+              <View className="mt-24">
                 <Pressable
                   onPress={() => navigation.navigate("CategorySelect")}
                   className="bg-[#6C62FE] py-3 rounded-xl"

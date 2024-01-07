@@ -14,9 +14,10 @@ import { collection, getDocs } from "firebase/firestore";
 import { FIRESTORE } from "../firebaseConfig";
 import AudioCard from "../components/AudioCard";
 import LoadingScreen from "./LoadingScreen";
+import CartAudio from "../components/CartAudio";
 
 export default function Homepage({ navigation }) {
-  const { username } = useSelector((state) => state.user);
+  const { username, categories } = useSelector((state) => state.user);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
 
@@ -65,9 +66,9 @@ export default function Homepage({ navigation }) {
           <Text className="text-[#585859]">Search for audibooks</Text>
           <Ionicons name="search" size={16} color="#585859" />
         </Pressable>
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1, paddingBottom: 20 }}>
           <View className="my-4 px-2">
-            <Text className="text-xl font-bold">Audiobooks</Text>
+            <Text className="text-xl font-bold ml-4">Audiobooks</Text>
           </View>
           <View
             style={{ gap: 20 }}
@@ -84,6 +85,23 @@ export default function Homepage({ navigation }) {
               );
             })}
           </View>
+          <View className="my-6 px-2">
+            <Text className="text-xl font-bold ml-4">For You</Text>
+          </View>
+          {data.map((audibook) => {
+            if (categories.includes(audibook.category)) {
+              return (
+                <CartAudio
+                  key={audibook.id}
+                  id={audibook.id}
+                  title={audibook.title}
+                  author={audibook.author}
+                  rating={audibook.stars}
+                  image={audibook.image}
+                />
+              );
+            }
+          })}
         </ScrollView>
       </SafeAreaView>
     </View>

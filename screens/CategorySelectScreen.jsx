@@ -40,7 +40,7 @@ export default function CategorySelectScreen({ navigation }) {
   return (
     <View
       style={{
-        marginTop: Platform.OS == "android" ? "25" : "0",
+        marginTop: Platform.OS == "android" ? 25 : 0,
       }}
       className="bg-[#EEECF9] flex-1"
     >

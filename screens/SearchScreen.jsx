@@ -41,12 +41,7 @@ export default function SearchScreen({ navigation }) {
   return isLoading ? (
     <LoadingScreen />
   ) : (
-    <View
-      style={{
-        paddingTop: Platform.OS == "android" ? 25 : 0,
-      }}
-      className="pt-16"
-    >
+    <View className="pt-16">
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
