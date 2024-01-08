@@ -18,7 +18,7 @@ export default function OpeningScreen({ navigation }) {
         <View className="bg-[#EEEDF8] w-full h-[50%]"></View>
         <View className="bg-[#6C62FE] w-full justify-end h-[50%]">
           <View className="h-[80%] p-4 gap-y-10 bg-[#EEEDF8] w-full rounded-tl-3xl rounded-tr-3xl">
-            <Text className="text-5xl font-bold">ReadAudio</Text>
+            <Text className="text-5xl font-bold">UdiBook</Text>
             <Text className="text-[#595959ff] text-xl font-light w-[60%]">
               Over 10,000 books in your fingertips!
             </Text>
