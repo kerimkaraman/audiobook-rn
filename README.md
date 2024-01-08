@@ -23,3 +23,7 @@ The purpose of developing this project was to show my skills in React Native, to
 
 - Personal profile page.
 - Saving liked audibooks.
+
+### Credits
+
+[App Design](https://uizard.io/templates/mobile-app-templates/audiobook-mobile-app/)
