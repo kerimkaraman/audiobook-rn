@@ -18,6 +18,10 @@ The purpose of developing this project was to show my skills in React Native, to
 - Expo Vector Icons
 - [react-native-slider](https://www.npmjs.com/package/react-native-slider)
 - [UUID](https://www.npmjs.com/package/uuid)
+- 
+### Little Video
+[Youtube](https://www.youtube.com/watch?v=RTgOIKbMY-I)
+
 
 ### Potential Updates
 
